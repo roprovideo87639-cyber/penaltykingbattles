@@ -7,6 +7,9 @@
     <!-- Logo in de browser tab -->
     <link rel="icon" href="logo.png" type="image/x-icon">
     
+    <!-- Google Fonts voor een modernere look -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+
     <!-- Firebase SDK (Firestore versie voor 1 bestand) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
@@ -14,132 +17,268 @@
     <style>
         :root {
             --blue: #0033A0;
+            --blue-dark: #002270;
             --yellow: #FFD100;
+            --yellow-light: #ffea79;
+            --white: #FFFFFF;
+            --gray-bg: #f4f6fc;
         }
+
         body {
             background-color: var(--blue);
-            color: var(--yellow);
-            font-family: Arial, sans-serif;
+            color: var(--white);
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
+
         header {
             display: flex;
             align-items: center;
             justify-content: center;
             flex-direction: column;
-            margin-bottom: 30px;
+            margin: 20px 0 30px 0;
             text-align: center;
         }
+
         .title-container {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
         }
+
         .title-container img {
-            height: 60px;
+            height: 75px;
             width: auto;
-            border-radius: 5px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            background-color: var(--white);
+            padding: 4px;
         }
+
         h1 {
             margin: 0;
-            font-size: 2.5em;
+            font-size: 2.8em;
+            font-weight: 800;
+            color: var(--yellow);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
+
         h3 {
-            margin: 5px 0 20px 0;
-            font-style: italic;
-            color: #fff;
+            margin: 8px 0 0 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: var(--yellow-light);
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
-        .container {
-            background-color: #fff;
+
+        .card {
+            background-color: var(--white);
             color: var(--blue);
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        input, button {
+            max-width: 500px;
             width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            border: 2px solid var(--blue);
-            border-radius: 5px;
+            margin: 0 auto;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-sizing: border-box;
+        }
+
+        .card h2 {
+            margin-top: 0;
+            font-weight: 700;
+            color: var(--blue);
+            font-size: 1.8em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--yellow);
+            padding-bottom: 8px;
+            display: inline-block;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            margin: 8px 0 16px 0;
+            border: 2px solid #e1e6ed;
+            border-radius: 10px;
             box-sizing: border-box;
             font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: all 0.3s ease;
+            background-color: var(--gray-bg);
         }
+
+        input:focus {
+            border-color: var(--blue);
+            background-color: var(--white);
+            outline: none;
+            box-shadow: 0 0 0 4px rgba(0,51,160,0.1);
+        }
+
         button {
-            background-color: var(--blue);
-            color: var(--yellow);
-            font-weight: bold;
-            cursor: pointer;
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            box-sizing: border-box;
             font-size: 1.1em;
-            transition: 0.3s;
-        }
-        button:hover {
-            background-color: #001F60;
-        }
-        .lists-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        .list-box {
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
             background-color: var(--yellow);
             color: var(--blue);
-            padding: 15px 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(255,209,0,0.3);
         }
-        .list-box h2 {
-            border-bottom: 2px solid var(--blue);
-            padding-bottom: 10px;
-            margin-top: 0;
+
+        button:hover {
+            background-color: #e5bc00;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255,209,0,0.4);
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
+
+        .btn-secondary {
+            background-color: var(--blue);
+            color: var(--yellow);
+            box-shadow: 0 4px 12px rgba(0,51,160,0.3);
         }
-        li {
-            background-color: rgba(255, 255, 255, 0.6);
-            margin: 8px 0;
-            padding: 12px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 1.1em;
-            display: flex;
-            align-items: center;
+
+        .btn-secondary:hover {
+            background-color: var(--blue-dark);
+            color: var(--yellow);
         }
+
+        /* Home Scherm & Lijsten */
+        .dashboard-container {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
         .home-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-bottom: 20px;
+            background-color: var(--white);
+            padding: 20px 30px;
+            border-radius: 16px;
+            margin-bottom: 25px;
             color: var(--blue);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            flex-wrap: wrap;
+            gap: 15px;
         }
+
         .home-header h2 {
             margin: 0;
+            font-size: 1.6em;
+            font-weight: 700;
         }
+
+        .lists-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+
+        @media(max-width: 768px) {
+            .lists-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        .list-box {
+            background-color: var(--yellow);
+            color: var(--blue);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+        }
+
+        .list-box h2 {
+            margin-top: 0;
+            font-size: 1.4em;
+            border-bottom: 2px solid var(--blue);
+            padding-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        li {
+            background-color: rgba(255, 255, 255, 0.85);
+            margin: 10px 0;
+            padding: 14px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1.05em;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.01);
+            background-color: var(--white);
+        }
+
+        .player-name {
+            font-size: 1.15em;
+            color: var(--blue-dark);
+            font-weight: 700;
+        }
+
+        .player-info {
+            font-size: 0.85em;
+            color: #555;
+            font-weight: 500;
+        }
+
         .error {
-            color: red;
-            font-size: 0.9em;
-            margin-top: -5px;
-            margin-bottom: 10px;
+            color: #d93838;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin: -10px 0 10px 0;
         }
+
         .hidden {
             display: none !important;
         }
+
         .toggle-auth {
             text-align: center;
             cursor: pointer;
             color: var(--blue);
+            font-weight: 600;
             text-decoration: underline;
-            margin-top: 15px;
+            margin-top: 20px;
+            font-size: 0.95em;
+        }
+
+        .toggle-auth:hover {
+            color: var(--blue-dark);
         }
     </style>
 </head>
@@ -150,16 +289,17 @@
             <img src="logo.png" alt="Logo" id="logo" onerror="this.style.display='none'">
             <h1>Penalty King Battles</h1>
         </div>
-        <h3>discription: 2026/27 Golden Season</h3>
+        <h3>Golden Season 2026/27</h3>
     </header>
 
-    <!-- INLOGGEN EN REGISTREREN -->
-    <div class="container" id="auth-section">
+    <!-- INLOGGEN EN REGISTREREN (CARD) -->
+    <div class="card" id="auth-section">
         
         <!-- Inlog Formulier -->
         <div id="login-form">
             <h2>Inloggen</h2>
-            <input type="text" id="login-naam" placeholder="Jouw exacte volledige naam" required>
+            <label style="font-weight: 600; font-size: 0.9em; color: #555;">Jouw exacte volledige naam</label>
+            <input type="text" id="login-naam" placeholder="Bijv. Jan Smit" required>
             <div id="login-error" class="error"></div>
             <button onclick="login()">Inloggen</button>
             <p class="toggle-auth" onclick="toggleAuth()">Nog geen account? Registreer hier.</p>
@@ -168,47 +308,53 @@
         <!-- Registratie Formulier -->
         <div id="register-form" class="hidden">
             <h2>Registreren</h2>
-            <input type="text" id="reg-naam" placeholder="Volledige naam (bijv. Jan Smit)" required>
+            
+            <label style="font-weight: 600; font-size: 0.9em; color: #555;">Volledige naam</label>
+            <input type="text" id="reg-naam" placeholder="Bijv. Jan Smit" required>
             <div id="reg-naam-error" class="error"></div>
             
-            <input type="number" id="reg-leeftijd" placeholder="Leeftijd" required min="1">
+            <label style="font-weight: 600; font-size: 0.9em; color: #555;">Leeftijd</label>
+            <input type="number" id="reg-leeftijd" placeholder="Bijv. 18" required min="1">
             <div id="reg-leeftijd-error" class="error"></div>
 
-            <input type="text" id="reg-club" placeholder="Welke club speel je voor?" required>
+            <label style="font-weight: 600; font-size: 0.9em; color: #555;">Voetbalclub</label>
+            <input type="text" id="reg-club" placeholder="Bijv. FC Ajax" required>
             <div id="reg-club-error" class="error"></div>
 
-            <button onclick="register()">Registreren</button>
+            <button onclick="register()">Account Aanmaken</button>
             <p class="toggle-auth" onclick="toggleAuth()">Heb je al een account? Log hier in.</p>
         </div>
     </div>
 
-    <!-- HOME SCHERM (Pas zichtbaar na inloggen) -->
-    <div class="hidden" id="lists-section" style="max-width: 800px; margin: 0 auto;">
+    <!-- HOME SCHERM (Lijsten na inloggen) -->
+    <div class="hidden dashboard-container" id="lists-section">
         
         <div class="home-header">
             <h2 id="welkom-bericht">Welkom!</h2>
-            <button onclick="logout()" style="width: auto; padding: 10px 20px; margin: 0;">Uitloggen</button>
+            <button class="btn-secondary" onclick="logout()" style="width: auto; padding: 10px 24px; margin: 0;">Uitloggen</button>
         </div>
 
-        <div class="lists-container">
+        <div class="lists-grid">
+            <!-- Categorie 1: Goedgekeurd -->
             <div class="list-box">
                 <h2>✅ Goedgekeurde Uitdagers</h2>
                 <ul id="goedgekeurd">
-                    <!-- Wordt live ingeladen via Firestore -->
+                    <!-- Live ingeladen via Firestore -->
                 </ul>
             </div>
 
+            <!-- Categorie 2: Wachtlijst -->
             <div class="list-box">
                 <h2>⏳ Wachtlijst Uitdagers</h2>
                 <ul id="wachtlijst">
-                    <!-- Wordt live ingeladen via Firestore -->
+                    <!-- Live ingeladen via Firestore -->
                 </ul>
             </div>
         </div>
     </div>
 
     <script>
-        // --- 1. JOUW NIEUWE FIRESTORE CONFIGURATIE ---
+        // --- 1. JOUW FIRESTORE CONFIGURATIE ---
         const firebaseConfig = {
             apiKey: "AIzaSyCAS2kcDMo0ELhbrLPk3VcNVoAjD7J7dN8",
             authDomain: "penaltykingbattles.firebaseapp.com",
@@ -222,7 +368,7 @@
         // Initialiseer Firebase en Firestore
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
-        let firestoreListener = null; // Variabele om de live listener op te slaan
+        let firestoreListener = null;
 
         // --- 2. HULPFUNCTIES ---
         function toggleAuth() {
@@ -258,13 +404,12 @@
                 hasError = true;
             }
             if (!club || !isValidText(club)) {
-                document.getElementById('reg-club-error').innerText = 'Ongeldige clubnaam. Gebruik alleen letters en cijfers.';
+                document.getElementById('reg-club-error').innerText = 'Ongeldige clubnaam. Gebruik geen speciale tekens.';
                 hasError = true;
             }
 
             if (hasError) return;
 
-            // Check in FIRESTORE of de naam al bestaat
             const usersRef = db.collection('users');
             const snapshot = await usersRef.where('naam', '==', naam).get();
             
@@ -273,12 +418,11 @@
                 return;
             }
 
-            // Gebruiker opslaan in Firestore
             await usersRef.add({
                 naam: naam, 
                 leeftijd: parseInt(leeftijd),
                 club: club,
-                status: 'wachtlijst' // Standaard op de wachtlijst
+                status: 'wachtlijst'
             });
 
             alert('Registratie succesvol! Je bent nu ingelogd.');
@@ -295,7 +439,6 @@
                 return;
             }
 
-            // Zoeken in FIRESTORE naar deze naam
             const usersRef = db.collection('users');
             const snapshot = await usersRef.where('naam', '==', naam).get();
             
@@ -323,25 +466,22 @@
             document.getElementById('lists-section').classList.add('hidden');
             document.getElementById('login-naam').value = '';
             
-            // Stop met live luisteren als de gebruiker uitlogt
             if (firestoreListener) {
                 firestoreListener();
             }
         }
 
-        // --- 5. HOME SCHERM & LIJSTEN LADEN (FIRESTORE LIVE UPDATES) ---
+        // --- 5. HOME SCHERM & LIJSTEN LADEN (FIRESTORE LIVE) ---
         function showListsSection(ingelogdeNaam) {
             document.getElementById('auth-section').classList.add('hidden');
             document.getElementById('lists-section').classList.remove('hidden');
             
-            // Voornaam eruit halen voor welkomstbericht
             const voornaamIngelogd = ingelogdeNaam.split(' ')[0];
-            document.getElementById('welkom-bericht').innerText = `Welkom, ${voornaamIngelogd}!`;
+            document.getElementById('welkom-bericht').innerText = `Welkom, ${voornaamIngelogd}! 👑`;
             
             const wachtlijstUI = document.getElementById('wachtlijst');
             const goedgekeurdUI = document.getElementById('goedgekeurd');
 
-            // Luister live naar FIRESTORE (onSnapshot)
             firestoreListener = db.collection('users').onSnapshot((querySnapshot) => {
                 wachtlijstUI.innerHTML = '';
                 goedgekeurdUI.innerHTML = '';
@@ -350,10 +490,13 @@
                     const user = doc.data();
                     const li = document.createElement('li');
                     
-                    // KNIP DE ACHTERNAAM ERAF (pakt alleen het eerste woord van de naam)
+                    // Alleen voornaam tonen in de lijst
                     const voornaamLijst = user.naam.split(' ')[0];
                     
-                    li.innerText = `👤 ${voornaamLijst} (${user.leeftijd} jr) - ⚽ ${user.club}`;
+                    li.innerHTML = `
+                        <span class="player-name">${voornaamLijst}</span>
+                        <span class="player-info">Leeftijd: ${user.leeftijd} jr | Club: ${user.club}</span>
+                    `;
 
                     if (user.status === 'wachtlijst') {
                         wachtlijstUI.appendChild(li);
