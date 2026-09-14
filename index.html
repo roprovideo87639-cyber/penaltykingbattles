@@ -7,7 +7,7 @@
     <!-- Logo in de browser tab -->
     <link rel="icon" href="logo.png" type="image/x-icon">
     
-    <!-- Firebase SDK (Firestore versie) -->
+    <!-- Firebase SDK (Firestore versie voor 1 bestand) -->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
 
@@ -208,15 +208,15 @@
     </div>
 
     <script>
-        // --- 1. FIRESTORE CONFIGURATIE ---
+        // --- 1. JOUW NIEUWE FIRESTORE CONFIGURATIE ---
         const firebaseConfig = {
-            apiKey: "AIzaSyAW-X3XYChG5AFwsXg8WNeL9wiMkonVaoc",
-            authDomain: "b-street-cup.firebaseapp.com",
-            projectId: "b-street-cup",
-            storageBucket: "b-street-cup.firebasestorage.app",
-            messagingSenderId: "476783560837",
-            appId: "1:476783560837:web:3b6c0a37c0f8d201a441ec",
-            measurementId: "G-K5E1TET81Z"
+            apiKey: "AIzaSyCAS2kcDMo0ELhbrLPk3VcNVoAjD7J7dN8",
+            authDomain: "penaltykingbattles.firebaseapp.com",
+            projectId: "penaltykingbattles",
+            storageBucket: "penaltykingbattles.firebasestorage.app",
+            messagingSenderId: "148552649157",
+            appId: "1:148552649157:web:4c66daf565f70499dc63ac",
+            measurementId: "G-DFF11NL0RW"
         };
 
         // Initialiseer Firebase en Firestore
@@ -341,7 +341,7 @@
             const wachtlijstUI = document.getElementById('wachtlijst');
             const goedgekeurdUI = document.getElementById('goedgekeurd');
 
-            // Luister live naar FIRESTORE (onSnapshot in plaats van .on('value'))
+            // Luister live naar FIRESTORE (onSnapshot)
             firestoreListener = db.collection('users').onSnapshot((querySnapshot) => {
                 wachtlijstUI.innerHTML = '';
                 goedgekeurdUI.innerHTML = '';
